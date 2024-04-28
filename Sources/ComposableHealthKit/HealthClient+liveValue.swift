@@ -53,9 +53,9 @@ extension HealthClient {
         }
         
         return HealthClient(
-            permissionStatus: { readingType in
+            permissionStatus: { writingType in
                 @Dependency(\.healthPermissionClient) var permission
-                return permission.status(for: getHKObjectType(from: readingType))
+                return permission.status(for: getHKSampleType(from: writingType))
             },
             request: { writingTypes, readingTypes in
                 @Dependency(\.healthPermissionClient) var permission
